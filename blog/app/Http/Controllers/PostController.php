@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function index(Post $post)
+    {
+        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(1)]);
+
     /**
      * Post一覧を表示する
      * 
@@ -16,5 +21,6 @@ class PostController extends Controller
     public function index(Post $post)
     {
         return $post->get();
+
     }
 }
