@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
     public function index(Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(1)]);
-
+        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
+    }
     /**
-     * Post一覧を表示する
-     * 
-     * @param Post Postモデル
-     * @return array Postモデルリスト
+     * 特定IDのpostを表示する
+     *
+     * @params Object Post // 引数の$postはid=1のPostインスタンス
+     * @return Reposnse post view
      */
-    public function index(Post $post)
+    public function show(Post $post)
     {
-        return $post->get();
-
+        return view('posts/show')->with(['post' => $post]);
     }
 }
