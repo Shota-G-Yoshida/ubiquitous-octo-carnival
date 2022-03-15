@@ -20,7 +20,8 @@ Route::get('/', function () {
 */
 
 Route::get('/', 'PostController@index');
-
-Route::get('/posts/{post}', 'PostController@show');
+Route::get('/posts/{post}', 'PostController@show')->where('post', '[0-9]+');
+Route::get('/posts/create', 'PostController@create');
+Route::post('/posts', 'PostController@store')
 
 ?>
