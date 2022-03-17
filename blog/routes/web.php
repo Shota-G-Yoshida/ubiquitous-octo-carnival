@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::get('/', 'PostController@index');
 Route::get('/posts/{post}', 'PostController@show')->where('post', '[0-9]+');
 Route::get('/posts/create', 'PostController@create');
-Route::post('/posts', 'PostController@store')
+Route::post('/posts', 'PostController@store');
+Route::get('/posts/{post}/edit', 'PostController@edit');
+Route::put('/posts/{post}', 'PostController@update');
 
 ?>
