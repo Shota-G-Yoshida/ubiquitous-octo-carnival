@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
+use App\User;
+use App\Post_User;
+use App\Comment;
+use Auth;
+use Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 
@@ -21,16 +27,21 @@ class PostController extends Controller
      
     public function show(Post $post)
     {
-        return view('posts/show')->with(['post' => $post]);
+        return view('posts/show')->with(['posts' => $post]);
     }
     
-    public function create()
+    public function create(Category $category)
     {
-        return view('posts/create');
+        return view('posts/create')->with(['categories' => $category->get()]);;
     }
     
-    public function store(Post $post, PostRequest $request)
+    public function store(Post $post, Request $request)
     {
+        $img = $request->file('image');
+        if(isset($img)) {
+            $path = Storage::disk('s3')->putFile('img', $img, 'public');
+            $post->image = basename($path);
+        }
         $input = $request['post'];
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
@@ -52,6 +63,12 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect('/');
+    }
+    
+    public function ranking(Post $post)
+    {
+        $test = $post->ranking();
+        return view('posts/ranking')->with(['posts' => $post->ranking()]);
     }
 }
 

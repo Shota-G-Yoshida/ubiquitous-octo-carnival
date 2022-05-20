@@ -19,6 +19,7 @@
                     <input type='text' name='post[body]' value="{{ $post->body }}">
                 </div>
                 <input type="submit" value="保存">
+                <p><a href='/mypage'></a></p>
             </form>
         </div>
     </body>

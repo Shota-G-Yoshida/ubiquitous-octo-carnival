@@ -1,7 +1,14 @@
 {
+    "build": {
+        "@saveall": true
+    },
     "extensions": {
         "@aws.profile": "profile:default",
+        "@git.ignoreLimitWarning": true,
         "@json.schemas": []
+    },
+    "instance": {
+        "@automaticShutdown": "30"
     },
     "language": {
         "tern_defs": {
