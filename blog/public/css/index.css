@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+}
+
+.top {
+  padding-left: 10px;
+}
+
+.left {
+  width: 50%;
+  height: 450px;
+  padding-left: 10px;
+  margin: 0px 0px 0px 30px;
+  overflow-y: scroll;
+  border: thin solid;
+}
+
+.right {
+  border: thin solid;
+}
+
